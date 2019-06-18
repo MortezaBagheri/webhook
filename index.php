@@ -6,8 +6,8 @@
  * Time: 8:27 PM
  */
 if (isset($_GET['url'])) {
-    $data = (file_get_contents("php://input"));
-    curl($_GET['url'], $data);
+    $data = json_decode(file_get_contents("php://input"), true);
+    curl($_GET['url'], json_encode($data));
 } else {
     echo "URL EMPTY";
 }
