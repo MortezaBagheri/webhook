@@ -1,30 +1,24 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: morteza
- * Date: 9/28/2018
- * Time: 8:27 PM
- */
-if(isset($_GET['url'])){
-    $data = json_decode(file_get_contents("php://input"), true);
-    curl($_GET['url'], $data);
-} else {
-    echo "URL EMPTY";
-}
+$url = $_GET['url'];
 
-function curl($url, $datas = [])
-{
+    // what post fields?
+    $fields = json_decode(file_get_contents("php://input"), true);
+
+    // build the urlencoded data
+    $postvars = http_build_query($fields);
+
+    // open connection
     $ch = curl_init();
+
+    // set the url, number of POST vars, POST data
     curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $datas);
-    $res = curl_exec($ch);
-    if (curl_error($ch)) {
-        var_dump(curl_error($ch));
-    } else {
-        return json_decode($res);
-    }
-    return $res;
-}
+    curl_setopt($ch, CURLOPT_POST, count($fields));
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postvars);
+
+    // execute post
+    $result = curl_exec($ch);
+
+    // close connection
+    curl_close($ch)
 
 ?>
