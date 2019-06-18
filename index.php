@@ -5,8 +5,12 @@
  * Date: 9/28/2018
  * Time: 8:27 PM
  */
+if(isset($_GET['url'])){
 $data = json_decode(file_get_contents("php://input"));
 curl($_GET['url'], $data);
+} else {
+echo "URL EMPTY";
+}
 function curl($url, $datas = [])
 {
     $ch = curl_init();
