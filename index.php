@@ -5,7 +5,7 @@
  * Date: 9/28/2018
  * Time: 8:27 PM
  */
-$data = json_decode(file_get_contents("php://input"), true);
+$data = json_decode(file_get_contents("php://input"));
 curl($_GET['url'], $data);
 function curl($url, $datas = [])
 {
@@ -21,3 +21,4 @@ function curl($url, $datas = [])
     }
     return $res;
 }
+?>
