@@ -2,7 +2,7 @@
 $url = $_GET['url'];
 
     // what post fields?
-    $fields = json_decode(file_get_contents("php://input"), true);
+    $fields = file_get_contents("php://input");
 
     // build the urlencoded data
     $postvars = http_build_query($fields);
