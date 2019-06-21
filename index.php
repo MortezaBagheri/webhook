@@ -7,7 +7,7 @@
  */
 if (isset($_GET['url'])) {
     $data = json_decode(file_get_contents("php://input"), true);
-    curl($_GET['url'], json_encode($data));
+    curl($_GET['url'], base64_encode(json_encode($data)));
 } else {
     echo "URL EMPTY";
 }
