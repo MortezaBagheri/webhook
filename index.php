@@ -16,7 +16,7 @@ function curl($url, $datas = [])
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $datas);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, ['request'=>$datas]);
     $res = curl_exec($ch);
     if (curl_error($ch)) {
         var_dump(curl_error($ch));
